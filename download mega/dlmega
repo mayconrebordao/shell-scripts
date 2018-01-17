@@ -1,0 +1,26 @@
+#!/usr/bin/python3 
+import os,sys
+
+args = sys.argv
+#print(args)
+
+#print(os.getcwd())
+
+try:
+
+	path = args[1]
+except Exception as e:
+	print("Numero de Argumentos invalidos!!")
+	sys.exit()
+
+file = open(path,'r')
+
+lista = file.readlines()
+for i in lista:
+	try :
+		
+
+		os.system("megadl '%s' --path=/home/maycon/Mega\\ files "%i)
+		os.system("chmod 777 /home/maycon/Mega\\ files/* ")
+	except Exception as e:
+		pass

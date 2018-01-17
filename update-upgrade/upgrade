@@ -1,0 +1,22 @@
+#!/bin/bash
+
+clear
+echo "atualizando e recuperando pacotes ...."
+#sudo su
+sudo apt-get update
+clear
+sudo dpkg --configure -a
+clear
+sudo apt-get install -f -y
+clear
+sudo apt-get dist-upgrade -y
+clear
+sudo apt-get full-upgrade -y
+clear
+sudo apt-get upgrade -y
+clear
+echo "fim"
+echo "abrindo mintupdate...."
+sudo mintupdate
+clear
+exit;
