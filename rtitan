@@ -1,0 +1,25 @@
+#!/usr/bin/python3
+import os,sys
+
+os.system('clear')
+os.chdir('/mnt/Windows-X/Android/Recovery/Titan/')
+
+lista = os.listdir('.')
+cont = 0
+for i in lista:
+	cont+=1
+	print('%d -  %s'%(cont,i))
+
+op = None
+
+try:
+	op = int(input('Digite o numero do recovery selecionado:'))
+except Exception as e:
+	sys.exit(1)
+
+chose = None
+try:
+	chose = lista[op-1]
+except Exception as e:
+	sys.exit(1)
+os.system('fastboot flash recovery %s'%chose)
