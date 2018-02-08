@@ -1,0 +1,51 @@
+#!/bin/bash
+# adcionando repositorios
+# echo ""
+
+read -p "Deseja adicionar os repositorios padrões? [s/n]" -n 1 -r
+
+case "$REPLY" in 
+	s|S )
+	# clear
+	echo ""
+	echo "adicionando repositorios ..."
+
+	sudo add-apt-repository ppa:nilarimogard/webupd8 -y
+	sudo add-apt-repository ppa:mc3man/mpv-tests -y
+	sudo add-apt-repository ppa:rvm/smplayer -y
+	;;
+esac
+
+echo " "
+
+read -p "Deseja Atualizar lista de pacotes? [s/n]" -n 1 -r
+
+case "$REPLY" in  
+    s|S )
+	echo ""
+	echo "Atualizando lista de pacotes ..."
+		sudo apt-get update
+        # ...
+        # ...
+    ;;
+
+
+    # *)
+
+    # ;;
+esac
+
+echo " "
+
+read -p "Deseja instalar os apps padrões? [s/n]" -n 1 -r
+
+case "$REPLY" in
+
+	s|S )
+		echo ""
+		echo "Instalando app padrões ...."	
+		sudo apt-get install android-tools-* cairo-dock mpv woeusb smplayer smplayer-themes smplayer-skins gcc gpp g++ cmake git lamp-server^ megatools dropbox sublime-text inkscape sqlite3 postgresql -y		
+	;; 
+esac
+
+echo "fim!";
