@@ -1,22 +1,43 @@
 #!/bin/bash
 
-clear
+# clear
 echo "atualizando e recuperando pacotes ...."
 #sudo su
 sudo apt-get update
-clear
+# clear
 sudo dpkg --configure -a
-clear
+# clear
 sudo apt-get install -f -y
-clear
+# clear
 sudo apt-get dist-upgrade -y
-clear
+# clear
 sudo apt-get full-upgrade -y
-clear
+# clear
 sudo apt-get upgrade -y
-clear
+# clear
+
+echo " "
+
+read -p "Abrir mintupdate? [s/n]" -n 1 -r
+
+case "$REPLY" in 
+	s|S )
+	# clear
+	echo "abrindo mintupdate...."
+	sudo mintupdate
+	# clear
+	# echo ""
+	# echo "adicionando repositorios ..."
+
+	# sudo add-apt-repository ppa:nilarimogard/webupd8 -y
+	# sudo add-apt-repository ppa:mc3man/mpv-tests -y
+	# sudo add-apt-repository ppa:rvm/smplayer -y
+	# sudo add-apt-repository ppa:team-xbmc/ppa -y
+
+	;;
+esac
+echo " "
+
 echo "fim"
-echo "abrindo mintupdate...."
-sudo mintupdate
-clear
+
 exit;

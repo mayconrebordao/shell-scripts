@@ -1,9 +1,15 @@
 #!/bin/bash
 
-echo $1
+ 
+
+echo "Digite o numero da partição de boot (use o comando \"sudo fdisk -l\" caso não saiba como ver o numero da partição. )"
+
+# echo $1
 
 sudo umount -t auto /dev/sda$1
 sudo rm -rf /mnt/linux
 sudo mkdir /mnt/linux
 sudo mount -t auto /dev/sda$1 /mnt/linux
 sudo grub-install --root-directory=/mnt/linux /dev/sda
+
+echo "Fim!"
