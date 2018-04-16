@@ -17,6 +17,7 @@ case "$REPLY" in
 	sudo add-apt-repository ppa:team-xbmc/ppa -y
 	sudo add-apt-repository ppa:papirus/papirus -y
 	sudo add-apt-repository ppa:snwh/pulp -y
+	sudo add-apt-repository ppa:webupd8team/terminix -y
 	sudo add-apt-repository ppa:danielrichter2007/grub-customizer -y
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
