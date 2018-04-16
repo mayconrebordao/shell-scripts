@@ -1,0 +1,18 @@
+#! /usr/bin/python3
+
+import os, sys
+
+try:
+	dire = sys.argv[1]
+	os.chdir(dire)
+except Exception as e:
+	raise e
+
+lista = os.listdir('.')
+cont = 1
+max = len(lista)
+for i in lista:
+	print('[%d/%d]'%(cont,max))
+	os.system('sudo npm install --global '+i)
+	cont+=1
+

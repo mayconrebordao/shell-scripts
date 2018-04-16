@@ -8,14 +8,19 @@ case "$REPLY" in
 	s|S )
 	# clear
 	echo ""
-	echo "adicionando repositorios ..."
-
+	echo "adicionando repositorios e novas arquiteturas ..."
+	sudo dpkg --add-architecture i386
+	sudo dpkg --add-architecture amd64
 	sudo add-apt-repository ppa:nilarimogard/webupd8 -y
 	sudo add-apt-repository ppa:mc3man/mpv-tests -y
 	sudo add-apt-repository ppa:rvm/smplayer -y
 	sudo add-apt-repository ppa:team-xbmc/ppa -y
 	sudo add-apt-repository ppa:papirus/papirus -y
 	sudo add-apt-repository ppa:snwh/pulp -y
+	sudo add-apt-repository ppa:danielrichter2007/grub-customizer -y
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+
 
 	;;
 esac
@@ -28,6 +33,7 @@ read -p "Deseja Atualizar lista de pacotes? [s/n]" -n 1 -r
 
 case "$REPLY" in  
     s|S )
+
 	echo ""
 	echo "Atualizando lista de pacotes ..."
 		sudo apt-get update
@@ -40,6 +46,38 @@ case "$REPLY" in
 
     # ;;
 esac
+
+
+echo ""
+
+read -p "Deseja instalar nodejs? [s/n]" -n 1 -r
+
+case "$REPLY" in  
+    s|S )
+        echo 'Instalanfo nodejs'
+        curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -
+        sudo apt-get install -y nodejs
+    ;;
+
+esac
+
+echo ""
+
+read -p "Deseja instalar mongodb? [s/n]" -n 1 -r
+case "$REPLY" in  
+    s|S )
+        echo 'Instalanfo mongodb'
+        sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
+
+        echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
+
+        sudo apt-get update
+        sudo apt-get install -y mongodb-org
+        sudo systemctl enable mongod.service
+    ;;
+esac
+
+
 
 echo " "
 
@@ -55,7 +93,7 @@ case "$REPLY" in
 
 
 
-		sudo apt-get install network-manager network-manager-gnome paper-icon-theme paper-cursor-theme paper-gtk-theme  apache2-utils papirus-icon-theme php-mysql gparted gpart wireshark banshee pgadmin3 mysql-workbench python-tk libapache2-mod-php kodi kodi-au* kodi-scr* kodi-vi* software-properties-common android-tools-* cairo-dock mpv woeusb smplayer smplayer-themes smplayer-skins gcc gpp g++ cmake git lamp-server^ megatools dropbox sublime-text inkscape sqlite3 postgresql texlive-font-utils texlive-lang-spanish texlive-context texlive-latex-base texlive-lang-european texlive-publishers texlive-luatex texlive-lang-greek texlive-games texlive-lang-english texlive-lang-german texlive-generic-extra texlive-base texlive-lang-indic texlive-fonts-extra texlive-generic-recommended texlive texlive-metapost texlive-pictures texlive-lang-african texlive-lang-french texlive-fonts-recommended texlive-lang-cyrillic texlive-xetex texlive-latex-extra texlive-base-recommended texlive-lang-portuguese texlive-omega texlive-common texlive-music texlive-bibtex-extra texlive-lang-other texlive-lang-korean texlive-full texlive-plain-extra texlive-humanities texlive-lang-italian texlive-pstricks texlive-lang-czechslovak texlive-lang-arabic texlive-math-extra texlive-latex3 texlive-htmlxml texlive-formats-extra texlive-binaries texlive-lang-all texlive-base-bin texlive-lang-japanese texlive-lang-cjk texlive-science texlive-texinfo texlive-lang-chinese texlive-latex-recommended texlive-lang-arab texlive-extra-utils texlive-lang-polish texlive-binaries texlive-latex-recommended context libmatroska* libebml* gstreamer1.0-* -y
+		sudo apt-get install yarn planner network-manager network-manager-gnome paper-icon-theme paper-cursor-theme paper-gtk-theme  apache2-utils papirus-icon-theme php-mysql gparted gpart wireshark banshee pgadmin3 mysql-workbench python-tk libapache2-mod-php kodi kodi-au* kodi-scr* kodi-vi* software-properties-common android-tools-* cairo-dock mpv woeusb smplayer smplayer-themes smplayer-skins gcc gpp g++ cmake git lamp-server^ megatools dropbox sublime-text inkscape sqlite3 postgresql texlive-font-utils texlive-lang-spanish texlive-context texlive-latex-base texlive-lang-european texlive-publishers texlive-luatex texlive-lang-greek texlive-games texlive-lang-english texlive-lang-german texlive-generic-extra texlive-base texlive-lang-indic texlive-fonts-extra texlive-generic-recommended texlive texlive-metapost texlive-pictures texlive-lang-african texlive-lang-french texlive-fonts-recommended texlive-lang-cyrillic texlive-xetex texlive-latex-extra  texlive-lang-portuguese texlive-omega  texlive-music texlive-bibtex-extra texlive-lang-other texlive-lang-korean texlive-full texlive-plain-extra texlive-humanities texlive-lang-italian texlive-pstricks texlive-lang-czechslovak texlive-lang-arabic texlive-math-extra texlive-latex3 texlive-htmlxml texlive-formats-extra texlive-binaries texlive-lang-all texlive-base-bin texlive-lang-japanese texlive-lang-cjk texlive-science  texlive-lang-chinese texlive-latex-recommended  texlive-extra-utils texlive-lang-polish texlive-binaries texlive-latex-recommended context libmatroska* libebml*  grub-customizer -y
 		cd $HOME/.icons
 		git clone https://github.com/keeferrourke/la-capitaine-icon-theme.git
 	;; 
